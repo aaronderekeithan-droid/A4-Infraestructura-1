@@ -1,0 +1,10 @@
+{
+    "t1" : {
+        "ip_address":"10.8.25.1",
+        "type":"ios",
+        "version":15,
+        "username":"admin",
+        "password":".......",
+        "enable":"......."
+    }
+}
