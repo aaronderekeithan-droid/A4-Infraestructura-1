@@ -214,10 +214,23 @@ Por cada ejecución se crea `reports/<fecha>/` con el informe y las `running-con
 
 ![Informe de hardening](img/06-informe-harden.png)
 
-- Informe de auditoría: [`reports/2026-11-13_06-31-58/informe_audit.md`](reports/2026-11-13_06-31-58/informe_audit.md)
-- Informe de hardening: [`reports/2026-11-13_06-32-49/informe_harden.md`](reports/2026-11-13_06-32-49/informe_harden.md)
+- Auditoría inicial (antes del hardening): [`reports/2026-11-13_06-31-58/informe_audit.md`](reports/2026-11-13_06-31-58/informe_audit.md)
+- Hardening aplicado: [`reports/2026-11-13_06-32-49/informe_harden.md`](reports/2026-11-13_06-32-49/informe_harden.md)
+- Auditoría posterior al hardening (solo lectura): [`reports/2026-11-13_07-28-19/informe_audit.md`](reports/2026-11-13_07-28-19/informe_audit.md)
+- Segunda ejecución de `harden` (comprobación de idempotencia): [`reports/2026-11-13_07-30-40/informe_harden.md`](reports/2026-11-13_07-30-40/informe_harden.md)
 
 ---
+
+### Verificación posterior
+
+Después de aplicar el hardening se corrieron el script otra vez en dos modos:
+
+1. **`audit` sobre los equipos ya endurecidos** (`07-28-19`): confirma que los 19 controles siguen cumpliendo en R1 y en SW1, sin cambiar nada.
+2. **`harden` por segunda vez** (`07-30-40`): comprueba que el script es *idempotente*. Como todos los controles ya cumplen, no aplica ningún comando y los dos informes coinciden.
+
+> En esas dos carpetas, el archivo `*_antes.txt` de las running-configs ya es el estado endurecido, porque el script lo guarda al empezar cada ejecución.
+
+
 
 ## Controles CIS aplicados y por qué
 
@@ -302,6 +315,13 @@ Reporte completo: [`onyx/onyx_despues_R1.html`](onyx/onyx_despues_R1.html)
 
 ---
 
+Ejecuciones posteriores al hardening (estado ya endurecido):
+
+| Ejecución | R1 | SW1 |
+|---|---|---|
+| `audit` (`07-28-19`) | [`R1_antes.txt`](reports/2026-11-13_07-28-19/running-configs/R1_antes.txt) | [`SW1_antes.txt`](reports/2026-11-13_07-28-19/running-configs/SW1_antes.txt) |
+| `harden` repetido (`07-30-40`) | [`R1_despues.txt`](reports/2026-11-13_07-30-40/running-configs/R1_despues.txt) | [`SW1_despues.txt`](reports/2026-11-13_07-30-40/running-configs/SW1_despues.txt) |
+
 ## Notas y límites
 
 - **El script cubre 19 controles, no todo el benchmark.** ONYX evalúa 63 controles, y los 34 que siguen fallando después del hardening son recomendaciones que no se aplicaron en este laboratorio, como AAA, NTP con autenticación, interfaz loopback y traps SNMP.
@@ -337,7 +357,13 @@ Reporte completo: [`onyx/onyx_despues_R1.html`](onyx/onyx_despues_R1.html)
     ├── 2026-11-13_06-31-58/
     │   ├── informe_audit.md
     │   └── running-configs/
-    └── 2026-11-13_06-32-49/
+    ├── 2026-11-13_06-32-49/
+    │   ├── informe_harden.md
+    │   └── running-configs/
+    ├── 2026-11-13_07-28-19/
+    │   ├── informe_audit.md
+    │   └── running-configs/
+    └── 2026-11-13_07-30-40/
         ├── informe_harden.md
         └── running-configs/
 ```
