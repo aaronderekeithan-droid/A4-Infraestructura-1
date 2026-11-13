@@ -405,7 +405,6 @@ get system status
 
 ![Syslog en ADMIN](img/10-syslog-admin.png)
 
-![Verificación en FW1](img/13-fw1-pruebas-despues.png)
 
 ### Auditoría final con las herramientas CIS
 
@@ -464,7 +463,6 @@ Las configuraciones de las corridas anteriores (solo R1 y SW1) están en las car
 │   ├── 10-syslog-admin.png
 │   ├── 11-fw1-verificador-antes.png
 │   ├── 12-fw1-verificador-despues.png
-│   └── 13-fw1-pruebas-despues.png
 ├── scripts/
 │   └── cis_hardening.py
 ├── onyx/
