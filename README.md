@@ -5,7 +5,7 @@
 
 ## Video demostrativo
 
-> **[▶ Ver el video en YouTube](PEGAR_AQUI_EL_ENLACE_DEL_VIDEO)**
+> **https://youtu.be/KzmproOC8bQ**
 > Duración: menos de 10 minutos, con fecha, hora, rostro y voz.
 
 ---
